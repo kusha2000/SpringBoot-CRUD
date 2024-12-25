@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -134,13 +135,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerPaginatedDto searchAllCustomers(int page, int size, String searchText) {
+    public CustomerPaginatedDto searchAllCustomers() {
 
         //===========================
         //Method 1-Without Pagination
         //===========================
 
-        //List<Customer> customers = customerRepo.findAll();
+        List<Customer> customers = customerRepo.findAll();
+
+        List<ResponseCustomerDto> responseCustomers = customers.stream()
+                .map(customer -> new ResponseCustomerDto(
+                        customer.getPublicId(),
+                        customer.getName(),
+                        customer.getAddress(),
+                        customer.getSalary(),
+                        customer.isActiveState()
+                ))
+                .collect(Collectors.toList());
+
+        return new CustomerPaginatedDto(responseCustomers.size(), responseCustomers);
+
 
         //===========================
         //Method 2-using Pagination
@@ -152,23 +166,23 @@ public class CustomerServiceImpl implements CustomerService {
         //Method 3-using Pagination(with using search also)
         //=================================================
 
-        Page<Customer> customers = customerRepo.searchAllByAddressOrName(searchText,PageRequest.of(page,size));
-
-
-        List<ResponseCustomerDto> list=new ArrayList<>();
-
-        //long recordCount=customerRepo.count();
-        long recordCount=customerRepo.countDataWithSearchText(searchText);
-
-        for(Customer d:customers){
-            list.add(new ResponseCustomerDto(
-                    d.getPublicId(),
-                    d.getName(),
-                    d.getAddress(),
-                    d.getSalary(),
-                    d.isActiveState()
-            ));
-        }
-        return new CustomerPaginatedDto(recordCount, list);
-    }
+//        Page<Customer> customers = customerRepo.searchAllByAddressOrName(searchText,PageRequest.of(page,size));
+//
+//
+//        List<ResponseCustomerDto> list=new ArrayList<>();
+//
+//        //long recordCount=customerRepo.count();
+//        long recordCount=customerRepo.countDataWithSearchText(searchText);
+//
+//        for(Customer d:customers){
+//            list.add(new ResponseCustomerDto(
+//                    d.getPublicId(),
+//                    d.getName(),
+//                    d.getAddress(),
+//                    d.getSalary(),
+//                    d.isActiveState()
+//            ));
+//        }
+//        return new CustomerPaginatedDto(recordCount, list);
+   }
 }

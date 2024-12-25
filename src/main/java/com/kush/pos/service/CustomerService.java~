@@ -19,5 +19,5 @@ public interface CustomerService {
 
     public  void deleteCustomer(long id);
 
-    public  CustomerPaginatedDto searchAllCustomers();
+    public  CustomerPaginatedDto searchAllCustomers(int page, int size, String searchText);
 }

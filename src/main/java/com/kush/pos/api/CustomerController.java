@@ -119,7 +119,7 @@ public class CustomerController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<StandardResponse>   getAllCustomer(@RequestParam int page,@RequestParam int size,@RequestParam String searchText) {
+    public ResponseEntity<StandardResponse>   getAllCustomer() {
 
         // =================
         // Save in the RAM
@@ -135,7 +135,7 @@ public class CustomerController {
         //=====================
 
         return new ResponseEntity<>(
-                new StandardResponse(200,"Customer List",customerService.searchAllCustomers(page,size,searchText)), HttpStatus.OK
+                new StandardResponse(200,"Customer List",customerService.searchAllCustomers()), HttpStatus.OK
         );
     }
 }

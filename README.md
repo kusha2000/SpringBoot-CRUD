@@ -1,4 +1,4 @@
-![Demo](https://github.com/user-attachments/assets/0474eb49-d449-43cd-a287-9bf8fd7a9c00)# Spring Boot CRUD Application(Backend Only)
+# Spring Boot CRUD Application(Backend Only)
 
 This is a backend-only CRUD (Create, Read, Update, Delete) application built using Spring Boot, designed to manage data efficiently. The APIs were tested and documented using Swagger-UI for ease of use and accessibility.
 
@@ -18,7 +18,9 @@ This is a backend-only CRUD (Create, Read, Update, Delete) application built usi
 
 
 
-![Demo](https://github.com/user-attachments/assets/83c204ce-c85e-4543-955e-7767a5f64273)
+https://github.com/user-attachments/assets/97a963f3-9e6e-438e-8c26-50dec0c09c7f
+
+
 
 <h2>This is the screenshots of the system</h2><br><br>
 
